@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .mockup img {
+            max-width: 100%;
+            height: auto;
+        }
+        .services-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        
+/* Overlay Styles */
+.order-form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none; /* للإخفاء الافتراضي */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+}
+
+.order-form-overlay .form-container {
+    background: #ffffff;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    width: 90%;
+	max-height: 90vh; /* يضمن أن النموذج لا يتجاوز الشاشة */
+    max-width: 500px;
+    animation: fadeIn 0.5s ease-in-out;
+    position: relative;
+}
+
+
+
+.order-form-overlay .close-btn {
+    position: absolute;
+    top: -15px; 
+    right: -15px;
+    background: #ff4757;
+    color: #ffffff;
+    font-size: 24px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 10px rgba(255, 71, 87, 0.3);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.order-form-overlay .close-btn:hover {
+    background: #ff6b81;
+    transform: scale(1.1);
+}
+
+.order-form-overlay h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+}
+
+.order-form-overlay label {
+    display: block;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+}
+
+.order-form-overlay input,
+.order-form-overlay select {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #ecf0f1;
+    color: #2c3e50;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-form-overlay input:focus,
+.order-form-overlay select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    outline: none;
+}
+
+.order-form-overlay button {
+    background: #27ae60;
+    color: #ffffff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 10px rgba(39, 174, 96, 0.3);
+    display: block;
+    margin: 0 auto;
+}
+
+.order-form-overlay button:hover {
+    background: #2ecc71;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(39, 174, 96, 0.4);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+.scroll-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+}
+
+.scroll-row {
+    display: inline-flex;
+    gap: 20px;
+    padding: 10px;
+}
+
+.card {
+    flex: 0 0 auto;
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.pagination-dots {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.pagination-dots .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.pagination-dots .dot.active {
+    background-color: #007bff;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Template Store</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/Prova/index.html#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Templates</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Template Details Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Template Preview -->
+                <div class="col-md-6 mockup">
+                    <img src="images/1.png"  alt="Template Mockup">
+                </div>
+                <!-- Template Information -->
+                <div class="col-md-6">
+                    <h2>Bauhaus - Architecture & Interior Template</h2>
+                    <p class="text-muted">Modern and responsive template designed for all your needs.</p>
+                    <h4>Price: $20</h4>
+                    <h5 class="mt-4">Services Included:</h5>
+                    <ul class="services-list">
+                        <li>Installation support</li>
+                        <li>Customization</li>
+                        <li>Technical support for 6 months</li>
+                        <li>Responsive design</li>
+                    </ul>
+                    <div class="template-card">
+                        <h5>Bauhaus - Architecture & Interior Template</h5>
+                        <a href="#" class="btn btn-primary mt-3 button" onclick="openForm(this)">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Template Sections -->
+            <div class="mt-5">
+                <h3>Template Sections</h3>
+                <div class="container">
+                    <div class="scroll-container">
+                        <div class="scroll-row">
+                            <div class="card" id="card-0">
+                                <img src="images/1.png" class="card-img-top" alt="Home Page">
+                                <div class="card-body">
+                                    <h5 class="card-title">Home Section</h5>
+                                    <p class="card-text">A stunning landing page to grab attention.</p>
+                                </div>
+                            </div>
+                            <div class="card" id="card-1">
+                                <img src="images/2.png" class="card-img-top" alt="Home Page">
+                                <div class="card-body">
+                                    <h5 class="card-title">About Section</h5>
+                                    <p class="card-text">A stunning landing page to grab attention.</p>
+                                </div>
+                            </div>
+                            <div class="card" id="card-2">
+                                <img src="images/3.png" class="card-img-top" alt="About Page">
+                                <div class="card-body">
+                                    <h5 class="card-title">Services Section</h5>
+                                    <p class="card-text">A detailed section to showcase your story.</p>
+                                </div>
+                            </div>
+                            <div class="card" id="card-3">
+                                <img src="images/4.png" class="card-img-top" alt="Contact Page">
+                                <div class="card-body">
+                                    <h5 class="card-title">project Section</h5>
+                                    <p class="card-text">An easy-to-use form to reach out.</p>
+                                </div>
+                            </div>
+                            <div class="card" id="card-4">
+                                <img src="images/5.png" class="card-img-top" alt="Contact Page">
+                                <div class="card-body">
+                                    <h5 class="card-title">Contact Section</h5>
+                                    <p class="card-text">An easy-to-use form to reach out.</p>
+                                </div>
+                            </div>
+                            <div class="card" id="card-5">
+                                <img src="images/6.png" class="card-img-top" alt="Contact Page">
+                                <div class="card-body">
+                                    <h5 class="card-title">Contact and footer</h5>
+                                    <p class="card-text">An easy-to-use form to reach out.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagination-dots">
+                        <span class="dot active" data-target="0"></span>
+                        <span class="dot" data-target="1"></span>
+                        <span class="dot" data-target="2"></span>
+                        <span class="dot" data-target="3"></span>
+                        <span class="dot" data-target="4"></span>
+                        <span class="dot" data-target="5"></span>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Overlay Form -->
+<div id="orderFormOverlay" class="order-form-overlay">
+    <div class="form-container">
+        <span class="close-btn" onclick="closeForm()">&times;</span>
+        <h2>Order Details</h2>
+        <form id="orderForm">
+
+            <!-- Hidden input for Template Title -->
+            <label for="templateTitle">Template Title</label>
+            <input type="text" id="templateTitle" name="templateTitle" readonly>
+            
+            <label for="buyerName">Name</label>
+            <input type="text" id="buyerName" name="buyerName" placeholder="Enter your name" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            
+            <label for="phone">WhatsApp Number</label>
+            <input type="text" id="phone" name="phone" placeholder="Enter your WhatsApp number" required>
+            
+            <label for="currency">Payment Currency</label>
+            <select id="currency" name="currency" required>
+                <option value="USD">USD</option>
+                <option value="SDG">SDG</option>
+                <option value="SAR">SAR</option>
+                <option value="AED">AED</option>
+                <option value="KWD">KWD</option>
+                <option value="other">Other</option>
+            </select>
+            
+            <label for="paymentMethod">Payment Method</label>
+            <select id="paymentMethod" name="paymentMethod" required>
+                <option value="Bank">Bank Transfer</option>
+                <option value="Fawry">Fawry</option>
+                <option value="Other">Other</option>
+            </select>
+            
+            <button type="button" onclick="sendOrder()">Send Order</button>
+        </form>
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Template Store. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
